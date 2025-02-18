@@ -56,10 +56,10 @@ spec:
               {{- end }}
             - name: GEOIPUPDATE_DB_DIR
               value: /data
+            {{- if .Values.maxmind.geoipEnabled }}
             - name: GEOIPUPDATE_FREQUENCY
-              {{- if .Values.maxmind.geoipEnabled }}
               value: "{{ .Values.maxmind.geoipUpdateFrequency }}"
-              {{- end }}
+            {{- end }}
           volumeMounts:
             - name: geolite2-data
               mountPath: /data
